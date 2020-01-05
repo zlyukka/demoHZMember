@@ -27,14 +27,6 @@ public class UserServicesImpl implements UserService {
 
     @PostConstruct
     private void init(){
-        userDao.deleteAll();
-        List<User> users = Arrays.asList(
-                new User(1l, "Vasya", "4444444", "k1"),
-                new User(2l, "Vova", "55555555", "p2"),
-                new User(3l, "Kolya", "666666666", "s1")
-        );
-        //saveAll(users);
-        users.forEach(user -> save(user));
 
     }
 

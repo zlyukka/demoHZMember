@@ -32,7 +32,8 @@ public class HazelcastConfig {
                         new MapConfig()
                                 .setName("user")
                                 .setMaxSizeConfig(new MaxSizeConfig(200, MaxSizeConfig.MaxSizePolicy.FREE_HEAP_SIZE))
-                                .setTimeToLiveSeconds(25)
+                                //.setTimeToLiveSeconds(25)
+                                .setBackupCount(1)
                                 .setEvictionPolicy(EvictionPolicy.LRU));
         if (!Strings.isEmpty(hazelcastProperties.getMancenterUrl())) {
             config.getManagementCenterConfig().setEnabled(true);
