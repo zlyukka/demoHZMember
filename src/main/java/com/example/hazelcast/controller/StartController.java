@@ -27,6 +27,14 @@ public class StartController {
         this.userService = userService;
     }
 
+    @PostMapping(value = "/get/user/add/{count}")
+    private String fillElastic(@PathVariable(value = "count") Long count){
+        for(long i =0; i<count; i++) {
+            userService.save(new User(i, "Kolya", "666666"+i, "s1"));
+        }
+        return count+" users were added";
+    }
+
     @GetMapping(value = "/get/user/by/id/{id}")
     public ResponseEntity<ResponseWithExecutionTime> getUserById(@PathVariable(value = "id") Long id){
         return processRequest(() -> userService.getById(id).orElse(new User()));
