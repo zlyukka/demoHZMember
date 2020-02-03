@@ -55,6 +55,12 @@ public class StartController {
         return processRequest(() -> userService.save(user));
     }
 
+    @PostMapping(value = "/save/userWithoutReturn")
+    public ResponseEntity<String> saveUserWithoutReturn(@RequestBody User user){
+        userService.saveWithoutReturn(user);
+        return new ResponseEntity("user was save", HttpStatus.OK);
+    }
+
     @PostMapping(value = "/save/users")
     public ResponseEntity<ResponseWithExecutionTime> saveUsers(@RequestBody List<User> users){
         return processRequest(() -> userService.saveAll(users));

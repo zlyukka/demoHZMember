@@ -51,6 +51,11 @@ public class ReplicatedMapServiceImpl implements ReplicatedMapService{
     }
 
     @Override
+    public void saveWithoutReturn(User value) {
+
+    }
+
+    @Override
     public Iterable<User> saveAll(List<User> values) {
         Map<Long, User> userMap = values.stream()
                 .collect(Collectors.toMap(k -> k.getId(), v -> v));

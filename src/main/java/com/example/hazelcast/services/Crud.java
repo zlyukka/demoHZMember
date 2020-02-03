@@ -14,6 +14,8 @@ public interface Crud<T>{
 
     T save(T value);
 
+    void saveWithoutReturn(T value);
+
     Iterable<T> saveAll(List<T> values);
 
     void remove(Long id);

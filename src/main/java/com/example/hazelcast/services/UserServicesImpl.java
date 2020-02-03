@@ -57,6 +57,12 @@ public class UserServicesImpl implements UserService {
     }
 
     @Override
+    @CachePut(value = "user", key = "#value.id")
+    public void saveWithoutReturn(User value) {
+        userDao.save(value);
+    }
+
+    @Override
     @CachePut(value = "user", key = "#values.![id]")
     public Iterable<User> saveAll(List<User> values) {
         return userDao.saveAll(values);
