@@ -27,7 +27,7 @@ public class StartController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/get/user/add/{count}")
+    @PostMapping(value = "/init/user/add/{count}")
     private String fillElastic(@PathVariable(value = "count") Long count){
         for(long i =0; i<count; i++) {
             userService.save(new User(i, "Kolya", "666666"+i, "s1"));
