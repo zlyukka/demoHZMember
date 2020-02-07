@@ -23,7 +23,8 @@ public class HzEntityController {
 
     @GetMapping("/hz/get/distributed/{hzInstanceName}")
     private Map getDistrebutedHZnstance(@PathVariable(name = "hzInstanceName") String instanceName){
-        return hazelcastInstance.getMap(instanceName);
+        Map map = hazelcastInstance.getMap(instanceName);
+        return map;
     }
 
     @GetMapping("/hz/get/replicated/{hzInstanceName}")

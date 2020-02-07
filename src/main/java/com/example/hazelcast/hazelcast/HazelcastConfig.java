@@ -1,9 +1,6 @@
 package com.example.hazelcast.hazelcast;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.EvictionPolicy;
-import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.MaxSizeConfig;
+import com.hazelcast.config.*;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -31,10 +28,14 @@ public class HazelcastConfig {
                 .addMapConfig(
                         new MapConfig()
                                 .setName("user")
-                                .setMaxSizeConfig(new MaxSizeConfig(200, MaxSizeConfig.MaxSizePolicy.FREE_HEAP_SIZE))
-                                //.setTimeToLiveSeconds(25)
+                                .setMaxSizeConfig(new MaxSizeConfig(300, MaxSizeConfig.MaxSizePolicy.PER_NODE))
+//                                .setMaxIdleSeconds(30)
+//                                .setTimeToLiveSeconds(25)
+//                                .setReadBackupData(true)
+                                .setInMemoryFormat(InMemoryFormat.BINARY)
                                 .setBackupCount(1)
-                                .setEvictionPolicy(EvictionPolicy.LRU));
+                                .setEvictionPolicy(EvictionPolicy.LRU)); //LRU: Least Recently Used. LFU: Least Frequently Used.
+
         if (!Strings.isEmpty(hazelcastProperties.getMancenterUrl())) {
             config.getManagementCenterConfig().setEnabled(true);
             config.getManagementCenterConfig().setUrl(hazelcastProperties.getMancenterUrl());
