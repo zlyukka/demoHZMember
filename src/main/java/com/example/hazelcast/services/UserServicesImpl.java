@@ -31,7 +31,7 @@ public class UserServicesImpl implements UserService {
     }
 
     @Override
-    @Cacheable(value = "user", key = "#root.methodName")
+    @Cacheable(value = "tUser", key = "#root.methodName")
     public Iterable<User> getAll() {
         return userDao.findAll();
     }

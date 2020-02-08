@@ -27,14 +27,21 @@ public class HazelcastConfig {
                 .setInstanceName("hazelcast-instance")
                 .addMapConfig(
                         new MapConfig()
-                                .setName("user")
-                                .setMaxSizeConfig(new MaxSizeConfig(300, MaxSizeConfig.MaxSizePolicy.PER_NODE))
-//                                .setMaxIdleSeconds(30)
+                            .setName("tUser")
+                            .setInMemoryFormat(InMemoryFormat.OBJECT)
+                            .setBackupCount(0)
+                )
+                .addMapConfig(
+                        new MapConfig()
+                            .setName("user")
+                            .setMaxSizeConfig(new MaxSizeConfig(300, MaxSizeConfig.MaxSizePolicy.PER_NODE))
+                            .setMaxIdleSeconds(30)
 //                                .setTimeToLiveSeconds(25)
 //                                .setReadBackupData(true)
-                                .setInMemoryFormat(InMemoryFormat.BINARY)
-                                .setBackupCount(1)
-                                .setEvictionPolicy(EvictionPolicy.LRU)); //LRU: Least Recently Used. LFU: Least Frequently Used.
+                            .setInMemoryFormat(InMemoryFormat.BINARY)
+                            .setBackupCount(1)
+                            .setEvictionPolicy(EvictionPolicy.LRU)
+                ); //LRU: Least Recently Used. LFU: Least Frequently Used.
 
         if (!Strings.isEmpty(hazelcastProperties.getMancenterUrl())) {
             config.getManagementCenterConfig().setEnabled(true);
